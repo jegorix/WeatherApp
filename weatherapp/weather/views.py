@@ -8,9 +8,15 @@ from .forms import CityForm
 
 def index(request):
     appid = '60df5caa0b880580fcc637509dbe92ac'
-    cities = City.objects.all()
     url = 'https://api.openweathermap.org/data/2.5/weather?q={}&units=metric&appid='+appid
 
+    if(request.method == 'POST'):
+        form = CityForm(request.POST)
+        form.save()
+
+    form = CityForm()
+
+    cities = City.objects.all()
     all_cities =  []
 
     for city in cities:
@@ -26,6 +32,7 @@ def index(request):
 
     context = {
         'all_info': all_cities,
+        'form': form,
     }
 
 
