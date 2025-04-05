@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Документация к сайту погоды</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container m-5">
+        <h1 class="text-center mb-5">Документация к сайту прогноза погоды</h1>
+
+        <section class="mb-5">
+            <h2>1. Описание проекта</h2>
+            <p>Этот веб-сайт предоставляет пользователям актуальную информацию о погоде в выбранных городах. Он использует API <a href="https://openweathermap.org/" target="_blank">OpenWeatherMap</a> для получения данных о погоде в реальном времени.</p>
+        </section>
+
+        <section class="mb-5">
+            <h2>2. Технологии</h2>
+            <ul>
+                <li><b>Язык программирования:</b> Python</li>
+                <li><b>Фреймворк:</b> Django</li>
+                <li><b>Стили:</b> Bootstrap</li>
+                <li><b>База данных:</b> SQLite (по умолчанию)</li>
+            </ul>
+        </section>
+
+        <section class="mb-5">
+            <h2>3. Функционал</h2>
+            <ul>
+                <li>Добавление города и получение погоды</li>
+                <li>Автоматическое обновление данных</li>
+                <li>Ограничение списка городов (хранится только 5 последних)</li>
+                <li>Страница с подробным прогнозом</li>
+            </ul>
+        </section>
+
+        <section class="mb-5">
+            <h2>4. API для получения данных о погоде</h2>
+            <p><b>Используемый API:</b> <a href="https://api.openweathermap.org/data/2.5/weather" target="_blank">OpenWeatherMap</a></p>
+            <p><b>Пример запроса:</b></p>
+            <code>https://api.openweathermap.org/data/2.5/weather?q=Minsk&units=metric&appid=YOUR_API_KEY</code>
+        </section>
+
+
+        <section class="mb-5">
+            <h2>5. Возможные улучшения</h2>
+            <ul>
+                <li>Добавить автоматическое обновление погоды через AJAX</li>
+                <li>Улучшить дизайн и адаптивность</li>
+                <li>Добавить поиск города в реальном времени</li>
+                <li>Использовать кэширование запросов</li>
+            </ul>
+        </section>
+
+        <footer class="mt-5 text-center">
+            <p>&copy; 2025 WeatherApp. Все права защищены.</p>
+        </footer>
+    </div>
+</body>
+</html>
