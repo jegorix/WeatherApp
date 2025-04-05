@@ -7,9 +7,14 @@ from django.http import HttpResponse
 # Create your views here.
 
 
+appid = '60df5caa0b880580fcc637509dbe92ac'
+url = 'https://api.openweathermap.org/data/2.5/weather?q={}&units=metric&appid=' + appid
+
+wide_cities = []
+
+
 def index(request):
-    appid = '60df5caa0b880580fcc637509dbe92ac'
-    url = 'https://api.openweathermap.org/data/2.5/weather?q={}&units=metric&appid=' + appid
+
 
     if(request.method == 'POST'):
         form = CityForm(request.POST)
@@ -23,9 +28,10 @@ def index(request):
         oldest_city.delete()
 
     form = CityForm()
+    all_cities = []
 
     cities = City.objects.all().order_by('-id')[:5]
-    all_cities = []
+
 
     for city in cities:
         res = requests.get(url.format(city.name)).json()
@@ -39,10 +45,6 @@ def index(request):
         else:
             print(f"Ошибка получения данных для города: {city.name}")
 
-        # if len(all_cities) > 5:
-        #     all_cities.pop()
-
-
 
 
     context = {
@@ -55,4 +57,28 @@ def index(request):
 
 
 def info(request):
-    return render(request, 'weather/info.html')
+    cities = City.objects.all().order_by('-id')
+    for city in cities:
+        res = requests.get(url.format(city.name)).json()
+        if "main" in res:
+            city_info = {
+                'city': city.name,
+                'temp': res["main"]["temp"],
+                'feels_like': res["main"]["feels_like"],
+                'pressure': res["main"]["pressure"],
+                'humidity': res["main"]["humidity"],
+                'wind': res["wind"]["speed"],
+                'clouds': res["clouds"]["all"],
+                'icon': res["weather"][0]["icon"],
+
+            }
+            if city_info not in wide_cities:
+                wide_cities.append(city_info)
+
+    context = {
+        'wide_info': wide_cities,
+    }
+
+
+
+    return render(request, 'weather/info.html' , context)
