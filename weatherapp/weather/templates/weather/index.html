@@ -28,7 +28,7 @@
 <div class = "container mt-5">
 
     <div class="row">
-        <div class="col-5 offset-2">
+        <div class="col-5 offset-1">
             <h1>Погода в вашем городе</h1>
             <label for="city">Город</label>
             <form action="">
@@ -38,13 +38,22 @@
 
         </div>
 
-        <div class="col-4 offset-1">
+        <div class="col-5 offset-1">
             <h1>Информация</h1>
-            <div class="alert alert-danger">
-                Погода в Москве
+            <div class="alert alert-info">
+                <div class="row">
+                    <div class="col-9">
+                <b>Город</b> {{info.city}} <br>
+                <b>Температура</b> {{info.temp}} <sup><b>o</b></sup>C <br>
+                    </div>
+
+            <div class="col-2 offset-1">
+                <img src="http://openweathermap.org/img/w/{{info.icon}}.png" alt="картинка погоды" class="img-thumbnail">
+            </div>
+
             </div>
         </div>
-
+      </div>
     </div>
 </div>
 
