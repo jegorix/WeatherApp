@@ -8,7 +8,7 @@ from .forms import CityForm
 
 def index(request):
     appid = '60df5caa0b880580fcc637509dbe92ac'
-    url = 'https://api.openweathermap.org/data/2.5/weather?q={}&units=metric&appid='+appid
+    url = 'https://api.openweathermap.org/data/2.5/weather?q={}&units=metric&appid=' + appid
 
     if(request.method == 'POST'):
         form = CityForm(request.POST)
@@ -17,9 +17,9 @@ def index(request):
     form = CityForm()
 
     cities = City.objects.all()
-    all_cities =  []
+    all_cities = []
 
-    for city in cities:
+    for city in reversed(cities):
         res = requests.get(url.format(city.name)).json()
         city_info = {
             'city': city.name,
@@ -27,6 +27,7 @@ def index(request):
             'icon': res["weather"][0]["icon"],
         }
         all_cities.append(city_info)
+
 
 
 
