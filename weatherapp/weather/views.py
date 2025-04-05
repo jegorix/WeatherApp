@@ -2,6 +2,7 @@ import requests
 from django.shortcuts import render
 from .models import City
 from .forms import CityForm
+from django.http import HttpResponse
 
 # Create your views here.
 
@@ -28,6 +29,9 @@ def index(request):
         }
         all_cities.append(city_info)
 
+        if len(all_cities) > 5:
+            all_cities.pop()
+
 
 
 
@@ -38,3 +42,7 @@ def index(request):
 
 
     return render(request, 'weather/index.html', context)
+
+
+def info(request):
+    return render(request, 'weather/info.html')
