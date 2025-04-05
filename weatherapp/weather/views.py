@@ -79,6 +79,10 @@ def info(request):
         'wide_info': wide_cities,
     }
 
-
-
     return render(request, 'weather/info.html' , context)
+
+def doc(request):
+    return render(request, 'weather/doc.html')
+
+def support(request):
+    return render(request, 'weather/support.html')
