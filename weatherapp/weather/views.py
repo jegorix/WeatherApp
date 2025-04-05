@@ -13,24 +13,34 @@ def index(request):
 
     if(request.method == 'POST'):
         form = CityForm(request.POST)
-        form.save()
+        if form.is_valid():
+            city_name = form.cleaned_data['name']
+            if not City.objects.filter(name=city_name):
+                form.save()
+
+    if City.objects.count() > 5:
+        oldest_city = City.objects.first()
+        oldest_city.delete()
 
     form = CityForm()
 
-    cities = City.objects.all()
+    cities = City.objects.all().order_by('-id')[:5]
     all_cities = []
 
-    for city in reversed(cities):
+    for city in cities:
         res = requests.get(url.format(city.name)).json()
-        city_info = {
-            'city': city.name,
-            'temp': res["main"]["temp"],
-            'icon': res["weather"][0]["icon"],
-        }
-        all_cities.append(city_info)
+        if "main" in res and "weather" in res:
+            city_info = {
+                'city': city.name,
+                'temp': res["main"]["temp"],
+                'icon': res["weather"][0]["icon"],
+            }
+            all_cities.append(city_info)
+        else:
+            print(f"Ошибка получения данных для города: {city.name}")
 
-        if len(all_cities) > 5:
-            all_cities.pop()
+        # if len(all_cities) > 5:
+        #     all_cities.pop()
 
 
 
