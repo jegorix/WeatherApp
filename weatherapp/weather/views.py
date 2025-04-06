@@ -85,4 +85,15 @@ def doc(request):
     return render(request, 'weather/doc.html')
 
 def support(request):
-    return render(request, 'weather/support.html')
+
+    support_content = [
+        {'name': 'Telegram', 'image': 'https://osx.telegram.org/updates/site/logo.png',  'size': '40px'},
+        {'name': 'Instagram', 'image': 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Instagram_logo_2022.svg/1200px-Instagram_logo_2022.svg.png',  'size': '40px'},
+        {'name': 'Gmail', 'image': 'https://images.icon-icons.com/2642/PNG/512/google_mail_gmail_logo_icon_159346.png', 'size': '50px'},
+    ]
+
+    context = {
+        'supports': support_content,
+    }
+
+    return render(request, 'weather/support.html', context)
