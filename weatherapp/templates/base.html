@@ -10,10 +10,6 @@
 
 
 
-
-
-
-
 <div class="d-flex flex-column flex-md-row align-items-center pb-3 mb-4 border-bottom">
       <a href="/" class="d-flex align-items-center link-body-emphasis text-decoration-none">
          <img src="https://i.pinimg.com/736x/09/ed/8a/09ed8aaeca04c9847f5854563bef84db.jpg" alt="" width="63" height="31" class="mt-2" style="border-radius: 10px;">
@@ -27,6 +23,13 @@
       </nav>
     <a class = "btn btn-outline-primary" href="{% url 'doc' %}">Документация</a>
     </div>
+
+
+{% block form %}
+
+<!--PAGE FORM-->
+
+{% endblock %}
 
 
 {% block content %}
